@@ -8,9 +8,10 @@ long power(long value, long n)
 {
     Context _("power", value, n); // do not care about this, it allow the display of call stack
 
+    return_and_display(pow(value, n));
     // your code
     // return_and_display shows the result in the window and returns it
-    return_and_display(1);
+//    return_and_display(1);
 }
 
 int main(int argc, char *argv[])
@@ -19,6 +20,5 @@ int main(int argc, char *argv[])
     MainWindow::instruction_duration = 400;  // make a pause between instruction display
     MainWindow* w = new PowerWindow(power); // create a window for this exercice
     w->show(); // show exercice
-
     return a.exec(); // main loop while window is opened
 }
