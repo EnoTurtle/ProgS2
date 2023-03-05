@@ -7,6 +7,22 @@ MainWindow* w = nullptr;
 
 void selectionSort(Array& toSort){
 	// selectionSort
+//    t ⇐ tableau de nombre aléatoire
+//    Pour chaque indice i de t faire
+//    chercher le minimum à partir de i
+//    inverser le minimum et la case courante
+//    fin Pour
+    for(uint i=0; i<toSort.size(); i++){
+        int comp = i;
+        for(uint j=i+1; j<toSort.size(); j++){
+            if(toSort[j] < toSort[comp]){
+                comp = j;
+            }
+        }
+        int tmp = toSort[i];
+        toSort[i] = toSort[comp];
+        toSort[comp] = tmp;
+        }
 }
 
 int main(int argc, char *argv[])
