@@ -1,17 +1,33 @@
 #include "tp1.h"
 #include <QApplication>
 #include <time.h>
+#include <math.h>
+#include <cmath>
+
+#define return_and_display(result) return _.store(result);
 
 int isMandelbrot(Point z, int n, Point point){
     // recursiv Mandelbrot
-
     // check n
 
-    // check length of z
-    // if Mandelbrot, return 1 or n (check the difference)
-    // otherwise, process the square of z and recall
-    // isMandebrot
-    return 0;
+    // z= x + iy        point = x + iy
+    //  z*z + point = (((z.x)*(z.x))+((z.y)*(z.y))+ point.x) + i (2*(z.x)*(z.y)+point.y)
+    bool retour = true;
+    double module_z = sqrt( pow( ((z.x)*(z.x))+((z.y)*(z.y)) , 2 ));
+    if(module_z <= 2 && n>0){
+//       z = (z*z)+point
+        float temp = z.x;
+        z.x = (((z.x)*(z.x))-((z.y)*(z.y))+ point.x);
+        z.y = (2*(temp)*(z.y)+point.y);
+        return(isMandelbrot(z, n-1, point));
+    }
+    else if(module_z > 2){
+        retour = false;
+        return int(retour);
+//        return_and_display(int(retour));
+    }
+    return int(retour);
+
 }
 
 int main(int argc, char *argv[])
@@ -22,6 +38,3 @@ int main(int argc, char *argv[])
 
     a.exec();
 }
-
-
-

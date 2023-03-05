@@ -250,50 +250,50 @@ int main()
     DynaTableau tableau;
     initialise(&tableau, 5);
 
-    // if (!est_vide(&liste))
-    // {
-    //     std::cout << "Oups y a une anguille dans ma liste 01" << std::endl;
-    // }
+    if (!est_vide(&liste))
+    {
+        std::cout << "Oups y a une anguille dans ma liste 01" << std::endl;
+    }
 
-    // if (!est_vide(&tableau))
-    // {
-    //     std::cout << "Oups y a une anguille dans mon tableau 01" << std::endl;
-    // }
+    if (!est_vide(&tableau))
+    {
+        std::cout << "Oups y a une anguille dans mon tableau 01" << std::endl;
+    }
 
-    // for (int i=1; i<=7; i++) {
-    //     ajoute(&liste, i*7);
-    //     ajoute(&tableau, i*5);
-    // }
+    for (int i=1; i<=7; i++) {
+        ajoute(&liste, i*7);
+        ajoute(&tableau, i*5);
+    }
 
 
-    // if (est_vide(&liste))
-    // {
-    //     std::cout << "Oups y a une anguille dans ma liste 02" << std::endl;
-    // }
+    if (est_vide(&liste))
+    {
+        std::cout << "Oups y a une anguille dans ma liste 02" << std::endl;
+    }
 
-    // if (est_vide(&tableau))
-    // {
-    //     std::cout << "Oups y a une anguille dans mon tableau 02" << std::endl;
-    // }
+    if (est_vide(&tableau))
+    {
+        std::cout << "Oups y a une anguille dans mon tableau 02" << std::endl;
+    }
 
-    // std::cout << "Elements initiaux:" << std::endl;
-    // affiche(&liste);
-    // affiche(&tableau);
-    // std::cout << std::endl;
+    std::cout << "Elements initiaux:" << std::endl;
+    affiche(&liste);
+    affiche(&tableau);
+    std::cout << std::endl;
 
-    // std::cout << "5e valeur de la liste " << recupere(&liste, 4) << std::endl;
-    // std::cout << "5e valeur du tableau " << recupere(&tableau, 4) << std::endl;
+    std::cout << "5e valeur de la liste " << recupere(&liste, 4) << std::endl;
+    std::cout << "5e valeur du tableau " << recupere(&tableau, 4) << std::endl;
 
-    // std::cout << "21 se trouve dans la liste a " << cherche(&liste, 21) << std::endl;
-    // std::cout << "15 se trouve dans le tableau a " << cherche(&tableau, 15) << std::endl;
+    std::cout << "21 se trouve dans la liste a " << cherche(&liste, 21) << std::endl;
+    std::cout << "15 se trouve dans le tableau a " << cherche(&tableau, 15) << std::endl;
 
-    // stocke(&liste, 4, 7);
-    // stocke(&tableau, 4, 7);
+    stocke(&liste, 4, 7);
+    stocke(&tableau, 4, 7);
 
-    // std::cout << "Elements apres stockage de 7:" << std::endl;
-    // affiche(&liste);
-    // affiche(&tableau);
-    // std::cout << std::endl;
+    std::cout << "Elements apres stockage de 7:" << std::endl;
+    affiche(&liste);
+    affiche(&tableau);
+    std::cout << std::endl;
 
     Liste pile; // DynaTableau pile;
     Liste file; // DynaTableau file;
@@ -311,11 +311,10 @@ int main()
         pousse_pile(&pileTab, i);
     }
 
-    int compteur = 10;
+    int compteur = 7;
     while(!est_vide(&file) && compteur > 0)
     {
         retire_file(&file);
-        // std::cout << retire_file(&file) << std::endl;
         affiche(&file);
         compteur--;
     }
@@ -329,10 +328,8 @@ int main()
     compteur = 7;
     while(!est_vide(&pileTab) && compteur > 0)
     {
-        // std::cout << retire_pile(&pileTab) << std::endl;
         retire_pile(&pileTab);
         affiche(&pileTab);
-        // cout << endl;
         compteur--;
     }
     cout << endl;

@@ -8,7 +8,11 @@ long power(long value, long n)
 {
     Context _("power", value, n); // do not care about this, it allow the display of call stack
 
-    return_and_display(pow(value, n));
+//    return_and_display(pow(value, n));
+    if(n==0){
+        return(1);
+    }
+        return_and_display(value*power(value, n-1));
     // your code
     // return_and_display shows the result in the window and returns it
 //    return_and_display(1);
