@@ -25,20 +25,15 @@ void recursivQuickSort(Array& toSort, int size)
         if(toSort[i]<pivot){
             lowerArray[lowerSize] = toSort[i];
             lowerSize++;
-        }else
-            if(toSort[i]>pivot){
-                greaterArray[greaterSize] = toSort[i];
-                greaterSize++;
-            }
+        }else{
+            greaterArray[greaterSize] = toSort[i];
+            greaterSize++;
+        }
     }
 
 
 
     // recursiv sort of lowerArray and greaterArray : On rappelle la fonction tant que la taille des tableaux est plus grande que 1
-    if(lowerSize>1 && greaterSize>1){
-        (recursivQuickSort(lowerArray, lowerSize));
-        (recursivQuickSort(greaterArray, greaterSize));
-    }
     if(lowerSize>1){
         (recursivQuickSort(lowerArray, lowerSize));
     }
