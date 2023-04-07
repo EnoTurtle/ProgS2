@@ -8,13 +8,6 @@ MainWindow* w=nullptr;
 
 void recursivQuickSort(Array& toSort, int size)
 {
-    //    t ⇐ tableau de nombre aléatoire
-    //    pivot ⇐ un nombre quelconque de t
-    //    lowers ⇐ [n ∈ t tel que n < pivot]
-    //    greaters ⇐ [n ∈ t tel que n > pivot]
-    //    trier lowers et greaters
-    //    fusionner lowers, pivot et greaters
-
     // stop statement = condition + return (return stop the function even if it does not return anything)
 
     // Création du pivot (qui vaut la moitié de la taille du tableau)
