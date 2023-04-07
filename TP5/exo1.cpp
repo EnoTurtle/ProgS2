@@ -18,12 +18,24 @@ std::vector<string> TP5::names(
 int HashTable::hash(std::string element)
 {
     // use this->size() to get HashTable size
-    return 0;
+    int i = 0;
+    int hash_value = 0;
+    while(element[i] != '\0')
+    {
+        hash_value += (int)element[i];
+        i++;
+    }
+    return hash_value % this->size();
 }
 
 void HashTable::insert(std::string element)
 {
+    //  Insère l’élément word dans la table à l’indice correspondant à sa valeur de hachage. S’il y a déjà un élément, écraser cet élément.
     // use (*this)[i] or this->get(i) to get a value at index i
+    int valHachage = hash(element);
+    this->get(valHachage) = element;
+
+
 }
 
 /**
@@ -34,12 +46,18 @@ void HashTable::insert(std::string element)
  */
 void buildHashTable(HashTable& table, std::string* names, int namesCount)
 {
-
+    for(int i=0; i<namesCount; i++){
+        table.insert(names[i]);
+    }
 }
 
 bool HashTable::contains(std::string element)
 {
     // Note: Do not use iteration (for, while, ...)
+    int valHachage = hash(element);
+    if(element == (*this)[valHachage]){
+        return true;
+    }
     return false;
 }
 
