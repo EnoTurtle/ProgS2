@@ -25,10 +25,10 @@ unsigned long int hash(string key)
 {
     // return an unique hash id from key
     int i = 0;
-    int hash_value = 0;
+    unsigned long int hash_value = 0;
     while(key[i] != '\0')
     {
-        hash_value += (int)key[i];
+        hash_value += (int)key[i]*pow(128,i);
         i++;
     }
     return hash_value;
@@ -61,6 +61,21 @@ struct MapNode : public BinaryTree
     void insertNode(MapNode* node)
     {
 
+        // Si il y a une valeur à gauche plus grande que notre valeur on va à droite
+        if(node->key_hash > this->key_hash && this->left != nullptr){
+            this->left->insertNode(node);
+        }else // Sinon si il y a une valeur à droite plus petite que notre valeur on va à droite
+        if(node->key_hash < this->key_hash && this->right != nullptr){
+            this->right->insertNode(node);
+        }
+
+        // Si il n'y a pas de valeur à gauche et que notre valeur est plus petite alors on met notre nouveau noeud à gauche
+        if(node->key_hash > this->key_hash && this->left == nullptr){
+            this->right->insertNode(node);
+        }else // Sinon si il n'y a pas de valeur à droite et que notre valeur est plus grande alors on met notre nouveau noeud à droite
+        if(node->key_hash < this->key_hash && this->right == nullptr){
+            this->right->insertNode(node);
+        }
     }
 
     void insertNode(string key, int value)
@@ -87,8 +102,14 @@ struct Map
      */
     void insert(string key, int value)
     {
-        int valHachage = hash(key);
-        this->get(valHachage) = value;
+        MapNode* root;
+        if(this->root == nullptr){
+            this->root->value = value;
+            this->root->key = key;
+        }
+//        else{
+//            insertNode(key, value);
+//        }
     }
 
     /**

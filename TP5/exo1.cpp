@@ -34,8 +34,6 @@ void HashTable::insert(std::string element)
     // use (*this)[i] or this->get(i) to get a value at index i
     int valHachage = hash(element);
     this->get(valHachage) = element;
-
-
 }
 
 /**
