@@ -62,19 +62,18 @@ struct MapNode : public BinaryTree
     {
 
         // Si il y a une valeur à gauche plus grande que notre valeur on va à droite
-        if(node->key_hash > this->key_hash && this->left != nullptr){
+        if(node->key_hash < this->key_hash && this->left != nullptr){
             this->left->insertNode(node);
         }else // Sinon si il y a une valeur à droite plus petite que notre valeur on va à droite
-        if(node->key_hash < this->key_hash && this->right != nullptr){
-            this->right->insertNode(node);
+            if(node->key_hash > this->key_hash && this->right != nullptr){
+                this->right->insertNode(node);
         }
-
         // Si il n'y a pas de valeur à gauche et que notre valeur est plus petite alors on met notre nouveau noeud à gauche
-        if(node->key_hash > this->key_hash && this->left == nullptr){
-            this->right->insertNode(node);
+        if(node->key_hash < this->key_hash && this->left == nullptr){
+            this->left = node;
         }else // Sinon si il n'y a pas de valeur à droite et que notre valeur est plus grande alors on met notre nouveau noeud à droite
-        if(node->key_hash < this->key_hash && this->right == nullptr){
-            this->right->insertNode(node);
+            if(node->key_hash > this->key_hash && this->right == nullptr){
+                this->right = node;
         }
     }
 
@@ -102,14 +101,13 @@ struct Map
      */
     void insert(string key, int value)
     {
-        MapNode* root;
-        if(this->root == nullptr){
-            this->root->value = value;
-            this->root->key = key;
+        MapNode* insNode = new MapNode(key, value);
+        if (this->root == nullptr){
+            this->root = insNode;
         }
-//        else{
-//            insertNode(key, value);
-//        }
+        else{
+            this->root->insertNode(insNode);
+        }
     }
 
     /**
@@ -119,6 +117,20 @@ struct Map
      */
     int get(string key)
     {
+        MapNode* getKey = this->root;
+
+        while (getKey != nullptr){
+            if (getKey->key_hash == hash(key)){
+                return getKey->value;
+            }
+            else if (hash(key) < getKey->key_hash){
+                getKey = getKey->left;
+            }
+            else if (hash(key) > getKey->key_hash){
+                getKey = getKey->right;
+            }
+        }
+
         return -1;
     }
 
@@ -129,7 +141,7 @@ struct Map
 int main(int argc, char *argv[])
 {
     srand(time(NULL));
-	Map map;
+    Map map;
     std::vector<std::string> inserted;
 
     map.insert("Yolo", 20);
